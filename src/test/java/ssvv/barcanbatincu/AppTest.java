@@ -47,4 +47,17 @@ public class AppTest
             e.printStackTrace();
         }
     }
+
+    @Test
+    public void addAssignmentTest3() {
+        TemaLabValidator temaLabValidator = new TemaLabValidator();
+        TemaLabRepo temaLabRepo = new TemaLabRepo(temaLabValidator);
+        try {
+            temaLabRepo.save(new TemaLab(1, "a fost si nu va mai fi", 16, 3));
+            assert temaLabRepo.size() == 0;
+        } catch (ValidatorException e) {
+            assert e.toString().equals("ssvv.barcanbatincu.exceptions.ValidatorException: Termen limita invalid\n");
+            e.printStackTrace();
+        }
+    }
 }
